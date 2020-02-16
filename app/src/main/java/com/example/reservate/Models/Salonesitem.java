@@ -1,4 +1,4 @@
-package com.example.reservate;
+package com.example.reservate.Models;
 
 public class Salonesitem
 {

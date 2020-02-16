@@ -10,20 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activities.MenuSlideActivity"
+            android:name=".MenuSlideActivity"
             android:label="@string/title_activity_menu_slide"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
-            android:name=".Activities.LoginActivity"
+            android:name=".Activities.UI.Account.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.PrincipalActivity"
+            android:name=".Activities.UI.Bienvenida.PrincipalActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.UI.Home.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Activities.SplashActivity"
+            android:name=".Activities.UI.Splash.SplashActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

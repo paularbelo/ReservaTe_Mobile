@@ -1,4 +1,4 @@
-package com.example.reservate;
+package com.example.reservate.Adapters.Salones;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.reservate.R;
+import com.example.reservate.Models.Salonesitem;
 
 import java.util.ArrayList;
 

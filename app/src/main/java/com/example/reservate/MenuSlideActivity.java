@@ -1,4 +1,4 @@
-package com.example.reservate.Activities;
+package com.example.reservate;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

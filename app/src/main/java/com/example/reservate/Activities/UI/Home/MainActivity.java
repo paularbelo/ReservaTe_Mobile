@@ -1,9 +1,13 @@
-package com.example.reservate;
+package com.example.reservate.Activities.UI.Home;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+
+import com.example.reservate.R;
+import com.example.reservate.Adapters.Salones.SalonesAdapter;
+import com.example.reservate.Models.Salonesitem;
 
 import java.util.ArrayList;
 
