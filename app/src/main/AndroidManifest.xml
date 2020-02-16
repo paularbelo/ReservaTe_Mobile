@@ -12,7 +12,7 @@
         <activity
             android:name=".MenuSlideActivity"
             android:label="@string/title_activity_menu_slide"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.UI.Account.LoginActivity"
             android:screenOrientation="portrait" />

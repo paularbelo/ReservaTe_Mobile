@@ -1,49 +1,81 @@
 package com.example.reservate.Activities.UI.Home;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 
+import com.example.reservate.Activities.UI.Fragments.FragmentProfile;
+import com.example.reservate.Activities.UI.Fragments.FragmentReservas;
+import com.example.reservate.Activities.UI.Fragments.FramentHelp;
+import com.example.reservate.Activities.UI.Fragments.SalonesFragment;
 import com.example.reservate.R;
-import com.example.reservate.Adapters.Salones.SalonesAdapter;
-import com.example.reservate.Models.Salonesitem;
 
-import java.util.ArrayList;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-public class MainActivity extends AppCompatActivity {
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ArrayList<Salonesitem> exampleList = new ArrayList<>();
-        exampleList.add(new Salonesitem(R.drawable.barberia1,R.drawable.imagebarber, "Barber Shop Inverrs", "Colonia 1089"));
-        exampleList.add(new Salonesitem(R.drawable.barberia2,R.drawable.barber2, "Spa New Age", "Guatemala 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia3,R.drawable.imagebarber, "Barber Daniels", "Colombia 3232"));
+        android.support.v7.widget.Toolbar toolbar= findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        exampleList.add(new Salonesitem(R.drawable.barberia1,R.drawable.imagebarber, "Barber Shop Inverrs", "Colonia 1089"));
-        exampleList.add(new Salonesitem(R.drawable.barberia2,R.drawable.barber2, "Spa New Age", "Guatemala 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia3,R.drawable.imagebarber, "Barber Daniels", "Colombia 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia1,R.drawable.imagebarber, "Barber Shop Inverrs", "Colonia 1089"));
-        exampleList.add(new Salonesitem(R.drawable.barberia2,R.drawable.barber2, "Spa New Age", "Guatemala 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia3,R.drawable.imagebarber, "Barber Daniels", "Colombia 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia1,R.drawable.imagebarber, "Barber Shop Inverrs", "Colonia 1089"));
-        exampleList.add(new Salonesitem(R.drawable.barberia2,R.drawable.barber2, "Spa New Age", "Guatemala 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia3,R.drawable.imagebarber, "Barber Daniels", "Colombia 3232"));
+        drawer=findViewById(R.id.drawer_layout);
+        NavigationView navView=findViewById(R.id.nav_view);
+        navView.setNavigationItemSelectedListener(this);
 
+        ActionBarDrawerToggle toogle=new ActionBarDrawerToggle(this,drawer,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toogle);
+        toogle.syncState();
 
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new SalonesAdapter(exampleList);
+        if(savedInstanceState==null){
 
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SalonesFragment()).commit();
+            navView.setCheckedItem(R.id.nav_home);
+        }
+
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+
+        switch (menuItem.getItemId()){
+            case R.id.nav_home:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new SalonesFragment()).commit();
+                break;
+        }
+        switch (menuItem.getItemId()){
+            case R.id.nav_profile:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new FragmentProfile()).commit();
+                break;
+        }
+        switch (menuItem.getItemId()){
+            case R.id.nav_reservas:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new FragmentReservas()).commit();
+                break;
+        }
+        switch (menuItem.getItemId()){
+            case R.id.nav_help:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new FramentHelp()).commit();
+                break;
+        }
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
