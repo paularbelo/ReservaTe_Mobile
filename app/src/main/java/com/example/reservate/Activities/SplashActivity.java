@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.reservate.MainActivity;
 import com.example.reservate.R;
 
 public class SplashActivity extends AppCompatActivity {
@@ -19,10 +18,10 @@ public class SplashActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, PantallaPrincipalActivity.class);
+                Intent intent = new Intent(SplashActivity.this, PrincipalActivity.class);
                 startActivity(intent);
 
             }
-        }, 4000);
+        }, 2000);
     }
 }
