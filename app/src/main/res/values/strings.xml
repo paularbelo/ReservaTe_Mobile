@@ -10,10 +10,5 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_salones">SALONES</string>
-    <string name="action_reservas">RESERVAS</string>
-    <string name="action_profile">PERFIL</string>
-    <string name="action_help">AYUDA</string>
-
 
 </resources>

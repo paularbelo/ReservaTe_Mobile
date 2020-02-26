@@ -89,17 +89,6 @@
             android:textSize="16sp"
             android:textColor="#fff"
             />
-<!--		<button
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:text="crear cuenta"
-			android:layout_marginleft="10dp"
-			android:textcolor="#fff"
-			android:background="@android:color/transparent"/> */-->
-
-
-
-
 
 </LinearLayout>
 

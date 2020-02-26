@@ -1,58 +1,74 @@
 package com.example.reservate.Activities.UI.Fragments;
 
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.reservate.Adapters.Salones.SalonesAdapter;
-import com.example.reservate.Models.Salonesitem;
+
+import com.example.reservate.Adapters.Sucursales.SucursalesAdapter;
+import com.example.reservate.Interfaces.GetDataServiceSucursales;
+import com.example.reservate.Models.Sucursal;
+import com.example.reservate.Network.RetrofitClientInstance;
 import com.example.reservate.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SalonesFragment extends Fragment
 {
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+    private SucursalesAdapter mAdapter;
+    View rootView;
 
+
+
+    public SalonesFragment() {
+        // Required empty public constructor
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
 
-        View rootView= inflater.inflate(R.layout.fragment_salones,container,false);
+        rootView= inflater.inflate(R.layout.fragment_salones,container,false);
 
         mRecyclerView = rootView.findViewById(R.id.recyclerView);
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        ArrayList<Salonesitem> exampleList = new ArrayList<>();
-        exampleList.add(new Salonesitem(R.drawable.barberia1,R.drawable.imagebarber, "Barber Shop Inverrs", "Colonia 1089"));
-        exampleList.add(new Salonesitem(R.drawable.barberia2,R.drawable.barber2, "Spa New Age", "Guatemala 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia3,R.drawable.imagebarber, "Barber Daniels", "Colombia 3232"));
+        GetDataServiceSucursales service= RetrofitClientInstance.getRetofitInstance().create(GetDataServiceSucursales.class);
 
-        exampleList.add(new Salonesitem(R.drawable.barberia1,R.drawable.imagebarber, "Barber Shop Inverrs", "Colonia 1089"));
-        exampleList.add(new Salonesitem(R.drawable.barberia2,R.drawable.barber2, "Spa New Age", "Guatemala 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia3,R.drawable.imagebarber, "Barber Daniels", "Colombia 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia1,R.drawable.imagebarber, "Barber Shop Inverrs", "Colonia 1089"));
-        exampleList.add(new Salonesitem(R.drawable.barberia2,R.drawable.barber2, "Spa New Age", "Guatemala 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia3,R.drawable.imagebarber, "Barber Daniels", "Colombia 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia1,R.drawable.imagebarber, "Barber Shop Inverrs", "Colonia 1089"));
-        exampleList.add(new Salonesitem(R.drawable.barberia2,R.drawable.barber2, "Spa New Age", "Guatemala 3232"));
-        exampleList.add(new Salonesitem(R.drawable.barberia3,R.drawable.imagebarber, "Barber Daniels", "Colombia 3232"));
+        Call<List<Sucursal>> call = service.GetAllSucursales();
 
 
-        mAdapter = new SalonesAdapter(exampleList);
+        call.enqueue(new Callback<List<Sucursal>>() {
+            @Override
+            public void onResponse(Call<List<Sucursal>> call, Response<List<Sucursal>> response) {
 
+                List<Sucursal> List=response.body();
 
-        mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setAdapter(new SucursalesAdapter(List));
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Sucursal>> call, Throwable t) {
+
+            }
+        });
 
         return  rootView;
-
     }
+
+
 }

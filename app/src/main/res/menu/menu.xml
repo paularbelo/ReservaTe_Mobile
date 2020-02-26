@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/salones"
+        android:title="SALONES"
+        android:icon="@drawable/ic_salones"/>
+
+    <item
+        android:id="@+id/reservas"
+        android:title="RESERVAS"
+        android:icon="@drawable/ic_reservas" />
+    <item
+        android:id="@+id/profile"
+        android:title="PERFIL"
+        android:icon="@drawable/ic_profile"
+         />
+    <item
+        android:id="@+id/help"
+        android:title="AYUDA"
+        android:icon="@drawable/ic_help"
+         />
+
+</menu>
